@@ -7,48 +7,19 @@
 
 <script>
 import SideMenu from './SideMenu'
+import {mapGetters} from 'vuex'
 export default {
   name: 'index',
   components: {SideMenu},
   data () {
     return {
-      sideMenu: [
-        {
-          id: 11,
-          parent_id: 0,
-          label: '国内客户',
-          icon: '',
-          href: '/home/inner_customer',
-          children: [
-            {
-              id: 111,
-              parent_id: 11,
-              label: '概述',
-              icon: '',
-              href: '/home/inner_customer/overview',
-              children: []
-            }
-          ]
-        },
-        {
-          id: 12,
-          parent_id: 0,
-          label: '国外客户',
-          icon: '',
-          href: '/home/outer_customer',
-          children: [
-            {
-              id: 111,
-              parent_id: 11,
-              label: '概述',
-              icon: '',
-              href: '/home/outer_customer/overview',
-              children: []
-            }
-          ]
-        }
-      ]
     }
+  },
+  created () {
+    this.$store.dispatch('GetSideMenu', 0).then(data => {})
+  },
+  computed: {
+    ...mapGetters(['sideMenu'])
   }
 }
 </script>

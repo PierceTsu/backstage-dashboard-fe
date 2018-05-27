@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal"  @select="handleSelect">
     <template v-for="(item, index) in topMenu">
-      <el-menu-item v-if="item.children.length === 0" :key="item.label" :index="filterPath(item.href,index)" @click="open(item)">
+      <el-menu-item v-if="item.children.length === 0" :key="item.label" :index="filterPath(item.href,index)" @click.native="changeSideMenu(item)">
         <i>{{item.icon}}</i>
         <span>{{item.label}}</span>
       </el-menu-item>
@@ -36,8 +36,10 @@ export default {
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
     },
-    open (item) {
-      this.$router.push(item.href)
+    changeSideMenu (item) {
+      this.$store.dispatch('GetSideMenu', item.id).then(data => {
+        this.$router.push(item.href)
+      })
     }
   },
   props: {

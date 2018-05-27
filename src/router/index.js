@@ -42,7 +42,54 @@ export default new Router({
         {
           path: 'index',
           name: '报表',
-          component: resolve => require(['@/page/report/index.vue'], resolve)
+          component: resolve => require(['@/page/report/index'], resolve)
+        },
+        {
+          path: 'system/overview',
+          name: '系统概述',
+          component: resolve => require(['@/page/report/system/overview'], resolve)
+        },
+        {
+          path: 'system/service',
+          name: '服务监控',
+          component: resolve => require(['@/page/report/system/service'], resolve)
+        },
+        {
+          path: 'business/overview',
+          name: '业务概述',
+          component: resolve => require(['@/page/report/business/overview'], resolve)
+        },
+        {
+          path: 'business/stat',
+          name: '客户统计',
+          component: resolve => require(['@/page/report/business/stat'], resolve)
+        }
+      ]
+    },
+    {
+      path: '/settings',
+      component: Home,
+      redirect: '/settings/index',
+      children: [
+        {
+          path: 'index',
+          name: '设置',
+          component: resolve => require(['@/page/settings/index'], resolve)
+        },
+        {
+          path: 'system/user_mgr',
+          name: '用户管理',
+          component: resolve => require(['@/page/settings/system/userMgr'], resolve)
+        },
+        {
+          path: 'system/user_role_mgr',
+          name: '角色管理',
+          component: resolve => require(['@/page/settings/system/userRoleMgr'], resolve)
+        },
+        {
+          path: 'system/menu_mgr',
+          name: '菜单管理',
+          component: resolve => require(['@/page/settings/system/menuMgr'], resolve)
         }
       ]
     }
