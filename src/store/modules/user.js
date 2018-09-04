@@ -1,38 +1,49 @@
-import {getTopMenu, getSideMenu} from '../../api/user'
+import {setToken, removeToken, setUserInfo, removeUserInfo} from '../../utils/auth'
+import {login, logout} from '../../api/auth'
 
 const user = {
-  state: {
-    topMenu: [],
-    sideMenu: []
-  },
+  state: {},
   actions: {
-    GetTopMenu ({commit}) {
-      return new Promise(resolve => {
-        getTopMenu().then((res) => {
-          const data = res.data
-          commit('SET_TOP_MENU', data)
-          resolve(data)
+    Login ({commit}, loginForm) {
+      return new Promise((resolve, reject) => {
+        login(loginForm).then(res => {
+          if (res.status === 0) {
+            setToken()
+            setUserInfo({userId: res.data.userId, nickname: res.data.nickname})
+            localStorage.setItem('routers', JSON.stringify(res.data.routers))
+          }
+          resolve(res)
+        }).catch(err => {
+          reject(err)
         })
       })
     },
-    GetSideMenu ({commit}, parentId) {
-      return new Promise(resolve => {
-        getSideMenu(parentId).then((res) => {
-          const data = res.data
-          commit('SET_SIDE_MENU', data)
+    LogOut ({commit}) {
+      return new Promise((resolve) => {
+        logout({
+          url: 'auth/logout',
+          method: 'post'
+        }).then(data => {
+          removeToken()
+          removeUserInfo()
           resolve(data)
+        }).catch(() => {
+          removeToken()
+          removeUserInfo()
         })
+      })
+    },
+    FedLogOut ({commit}) {
+      return new Promise(resolve => {
+        commit('RESET_USER')
+        resolve()
       })
     }
   },
   mutations: {
-    SET_TOP_MENU: (state, topMenu) => {
-      console.log('top', topMenu)
-      state.topMenu = topMenu
-    },
-    SET_SIDE_MENU: (state, sideMenu) => {
-      console.log('side-action', sideMenu)
-      state.sideMenu = sideMenu
+    RESET_USER: (state) => {
+      removeToken()
+      removeUserInfo()
     }
   }
 }

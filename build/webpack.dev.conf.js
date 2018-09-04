@@ -38,7 +38,41 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       ? { warnings: false, errors: true }
       : false,
     publicPath: config.dev.assetsPublicPath,
-    proxy: config.dev.proxyTable,
+    // proxy: config.dev.proxyTable,
+    proxy: {
+      '/auth':{
+        target: 'http://127.0.0.1:8866',  // 接口域名
+        changeOrigin: true,  //是否跨域
+      },
+      '/user':{
+        target: 'http://127.0.0.1:8866',  // 接口域名
+        changeOrigin: true,  //是否跨域
+      },
+      '/role':{
+        target: 'http://127.0.0.1:8866',  // 接口域名
+        changeOrigin: true,  //是否跨域
+      },
+      '/resource':{
+        target: 'http://127.0.0.1:8866',  // 接口域名
+        changeOrigin: true,  //是否跨域
+      },
+      '/router':{
+        target: 'http://127.0.0.1:8866',  // 接口域名
+        changeOrigin: true,  //是否跨域
+      },
+      '/customer':{
+        target: 'http://127.0.0.1:8866',  // 接口域名
+        changeOrigin: true,  //是否跨域
+      },
+      '/conf':{
+        target: 'http://127.0.0.1:8866',  // 接口域名
+        changeOrigin: true,  //是否跨域
+      },
+      '/export':{
+        target: 'http://127.0.0.1:8866',  // 接口域名
+        changeOrigin: true,  //是否跨域
+      },
+    },
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,

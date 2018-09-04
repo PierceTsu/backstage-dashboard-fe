@@ -1,5 +1,6 @@
 const getters = {
-  sideMenu: state => state.user.sideMenu,
-  topMenu: state => state.user.topMenu
+  sidebar: state => state.common.sidebar,
+  visitedViews: state => state.tagsView.visitedViews,
+  cachedViews: state => state.tagsView.cachedViews
 }
 export default getters
