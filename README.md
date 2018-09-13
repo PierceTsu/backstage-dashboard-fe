@@ -1,5 +1,4 @@
 # backstage-dashboard-fe
-
 > Dynamic Router Dashboard with Authority Management
 
 ## Build Setup
@@ -31,3 +30,12 @@ npm run build --report
 * [ ] Multidimensional bar chart
 * [ ] Stacking histogram
 * [ ] Export Table To Excel
+
+## Backend Project
+> [backstage-dashboard-be](https://github.com/PierceTsu/backstage-dashboard-be)
+
+## Sample
+![icon](doc/img/sc001.png)
+![icon](doc/img/sc002.png)
+![icon](doc/img/sc003.png)
+![icon](doc/img/sc004.png)
